@@ -16,6 +16,5 @@
     "testFiles": [
         "test.ts"
     ],
-    "public": true,
-    "namespace": "LCD_Japanese"
+    "public": true
 }
