@@ -101,8 +101,8 @@ namespace I2C_LCD1602_KANA {
      * @param x is LCD column position, eg: 0
      * @param y is LCD row position, eg: 0
      */
-    //% blockId="I2C_LCD1620_SHOW_NUMBER" block="数字%nをx %x|y %yに表示"
-    //% weight=90 blockGap=8
+    //% blockId="I2C_LCD1620_SHOW_NUMBER" block="x %x y %y に数字 %n を表示"
+    //% weight=91 blockGap=8
     //% x.min=0 x.max=15
     //% y.min=0 y.max=1
     //% parts=LCD1602_I2C trackArgs=0
@@ -214,7 +214,7 @@ namespace I2C_LCD1602_KANA {
      * @param x is LCD column position, [0 - 15], eg: 0
      * @param y is LCD row position, [0 - 1], eg: 0
      */
-    //% blockId="I2C_LCD1620_SHOW_STRING" block="文字%sをx %x|y %yに表示"
+    //% blockId="I2C_LCD1620_SHOW_STRING" block="x %x y %y に文字 %s を表示"
     //% weight=90 blockGap=8
     //% x.min=0 x.max=15
     //% y.min=0 y.max=1
