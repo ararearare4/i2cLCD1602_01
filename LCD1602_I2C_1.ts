@@ -111,6 +111,57 @@ namespace I2C_LCD1602 {
         ShowString(s, x, y)
     }
 
+
+    // 一部の全角カタカナを LCD コードに変換
+    function kanaToLCDCode(c: string): number {
+        switch (c) {
+            case "ア": return 0xB1
+            case "イ": return 0xB2
+            case "ウ": return 0xB3
+            case "エ": return 0xB4
+            case "オ": return 0xB5
+            case "カ": return 0xB6
+            case "キ": return 0xB7
+            case "ク": return 0xB8
+            case "ケ": return 0xB9
+            case "コ": return 0xBA
+            case "サ": return 0xBB
+            case "シ": return 0xBC
+            case "ス": return 0xBD
+            case "セ": return 0xBE
+            case "ソ": return 0xBF
+            case "タ": return 0xC0
+            case "チ": return 0xC1
+            case "ツ": return 0xC2
+            case "テ": return 0xC3
+            case "ト": return 0xC4
+            case "ナ": return 0xC5
+            case "ニ": return 0xC6
+            case "ヌ": return 0xC7
+            case "ネ": return 0xC8
+            case "ノ": return 0xC9
+            case "マ": return 0xCA
+            case "ミ": return 0xCB
+            case "ム": return 0xCC
+            case "メ": return 0xCD
+            case "モ": return 0xCE
+            case "ヤ": return 0xCF
+            case "ユ": return 0xD0
+            case "ヨ": return 0xD1
+            case "ラ": return 0xD2
+            case "リ": return 0xD3
+            case "ル": return 0xD4
+            case "レ": return 0xD5
+            case "ロ": return 0xD6
+            case "ワ": return 0xD7
+            case "ン": return 0xDC
+            case "ー": return 0xA1
+            default: return c.charCodeAt(0)
+        }
+    }
+
+
+
     /**
      * show a string in LCD at given position
      * @param s is string will be show, eg: "Hello"
@@ -133,8 +184,10 @@ namespace I2C_LCD1602 {
         cmd(a)
 
         for (let i = 0; i < s.length; i++) {
-            dat(s.charCodeAt(i))
+            let lcdCode = kanaToLCDCode(s.charAt(i))
+            dat(lcdCode)
         }
+
     }
 
     /**
