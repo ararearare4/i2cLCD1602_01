@@ -112,7 +112,40 @@ namespace I2C_LCD1602 {
     }
 
 
-    // 一部の全角カタカナを LCD コードに変換
+    // 濁点・半濁点付き文字を分解
+    function normalizeDakuten(c: string): string[] {
+        switch (c) {
+            case "ガ": return ["カ", "゛"]
+            case "ギ": return ["キ", "゛"]
+            case "グ": return ["ク", "゛"]
+            case "ゲ": return ["ケ", "゛"]
+            case "ゴ": return ["コ", "゛"]
+            case "ザ": return ["サ", "゛"]
+            case "ジ": return ["シ", "゛"]
+            case "ズ": return ["ス", "゛"]
+            case "ゼ": return ["セ", "゛"]
+            case "ゾ": return ["ソ", "゛"]
+            case "ダ": return ["タ", "゛"]
+            case "ヂ": return ["チ", "゛"]
+            case "ヅ": return ["ツ", "゛"]
+            case "デ": return ["テ", "゛"]
+            case "ド": return ["ト", "゛"]
+            case "バ": return ["ハ", "゛"]
+            case "ビ": return ["ヒ", "゛"]
+            case "ブ": return ["フ", "゛"]
+            case "ベ": return ["ヘ", "゛"]
+            case "ボ": return ["ホ", "゛"]
+            case "パ": return ["ハ", "゜"]
+            case "ピ": return ["ヒ", "゜"]
+            case "プ": return ["フ", "゜"]
+            case "ペ": return ["ヘ", "゜"]
+            case "ポ": return ["ホ", "゜"]
+            default: return [c]
+        }
+    }
+
+
+    // カタカナや記号を LCD コードに変換
     function kanaToLCDCode(c: string): number {
         switch (c) {
             case "ア": return 0xB1
@@ -140,22 +173,38 @@ namespace I2C_LCD1602 {
             case "ヌ": return 0xC7
             case "ネ": return 0xC8
             case "ノ": return 0xC9
-            case "マ": return 0xCA
-            case "ミ": return 0xCB
-            case "ム": return 0xCC
-            case "メ": return 0xCD
-            case "モ": return 0xCE
-            case "ヤ": return 0xCF
-            case "ユ": return 0xD0
-            case "ヨ": return 0xD1
-            case "ラ": return 0xD2
-            case "リ": return 0xD3
-            case "ル": return 0xD4
-            case "レ": return 0xD5
-            case "ロ": return 0xD6
-            case "ワ": return 0xD7
-            case "ン": return 0xDC
+            case "ハ": return 0xCA
+            case "ヒ": return 0xCB
+            case "フ": return 0xCC
+            case "ヘ": return 0xCD
+            case "ホ": return 0xCE
+            case "マ": return 0xCF
+            case "ミ": return 0xD0
+            case "ム": return 0xD1
+            case "メ": return 0xD2
+            case "モ": return 0xD3
+            case "ヤ": return 0xD4
+            case "ユ": return 0xD5
+            case "ヨ": return 0xD6
+            case "ラ": return 0xD7
+            case "リ": return 0xD8
+            case "ル": return 0xD9
+            case "レ": return 0xDA
+            case "ロ": return 0xDB
+            case "ワ": return 0xDC
+            case "ン": return 0xDD
+            case "゛": return 0xDE
+            case "゜": return 0xDF
             case "ー": return 0xA1
+            case "。": return 0xA2
+            case "」": return 0xA3
+            case "「": return 0xA4
+            case "・": return 0xA5
+            case "、": return 0xA6
+            case "ッ": return 0xAF
+            case "ャ": return 0xB4
+            case "ュ": return 0xB5
+            case "ョ": return 0xB6
             default: return c.charCodeAt(0)
         }
     }
@@ -184,11 +233,15 @@ namespace I2C_LCD1602 {
         cmd(a)
 
         for (let i = 0; i < s.length; i++) {
-            let lcdCode = kanaToLCDCode(s.charAt(i))
-            dat(lcdCode)
+            const parts = normalizeDakuten(s.charAt(i))
+            for (let j = 0; j < parts.length; j++) {
+                const lcdCode = kanaToLCDCode(parts[j])
+                dat(lcdCode)
+            }
         }
-
     }
+
+
 
     /**
      * turn on LCD
