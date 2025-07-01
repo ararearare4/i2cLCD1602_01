@@ -75,7 +75,7 @@ namespace I2C_LCD1602_KANA {
      * initial LCD, set I2C address. Address is 39/63 for PCF8574/PCF8574A
      * @param Addr is i2c address for LCD, eg: 0, 39, 63. 0 is auto find address
      */
-    //% blockId="I2C_LCD1620_SET_ADDRESS" block="ディスプレイを%addrで初期化"
+    //% blockId="I2C_LCD1620_SET_ADDRESS" block="%addrで初期化"
     //% weight=100 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function LcdInit(Addr: number) {
@@ -241,7 +241,7 @@ namespace I2C_LCD1602_KANA {
     /**
      * turn on LCD
      */
-    //% blockId="I2C_LCD1620_ON" block="ディスプレイをオン"
+    //% blockId="I2C_LCD1620_ON" block="オン"
     //% weight=81 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function on(): void {
@@ -251,7 +251,7 @@ namespace I2C_LCD1602_KANA {
     /**
      * turn off LCD
      */
-    //% blockId="I2C_LCD1620_OFF" block="ディスプレイをオフ"
+    //% blockId="I2C_LCD1620_OFF" block="オフ"
     //% weight=80 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function off(): void {
@@ -261,7 +261,7 @@ namespace I2C_LCD1602_KANA {
     /**
      * clear all display content
      */
-    //% blockId="I2C_LCD1620_CLEAR" block="ディスプレイ表示をクリア"
+    //% blockId="I2C_LCD1620_CLEAR" block="表示をクリア"
     //% weight=85 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function clear(): void {
@@ -271,7 +271,7 @@ namespace I2C_LCD1602_KANA {
     /**
      * turn on LCD backlight
      */
-    //% blockId="I2C_LCD1620_BACKLIGHT_ON" block="ディスプレイのライトをオン"
+    //% blockId="I2C_LCD1620_BACKLIGHT_ON" block="ライトをオン"
     //% weight=71 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function BacklightOn(): void {
@@ -282,7 +282,7 @@ namespace I2C_LCD1602_KANA {
     /**
      * turn off LCD backlight
      */
-    //% blockId="I2C_LCD1620_BACKLIGHT_OFF" block="ディスプレイのライトをオフ"
+    //% blockId="I2C_LCD1620_BACKLIGHT_OFF" block="ライトをオフ"
     //% weight=70 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function BacklightOff(): void {
@@ -293,7 +293,7 @@ namespace I2C_LCD1602_KANA {
     /**
      * shift left
      */
-    //% blockId="I2C_LCD1620_SHL" block="ディスプレイの表示を左にずらす"
+    //% blockId="I2C_LCD1620_SHL" block="左にずらす"
     //% weight=61 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function shl(): void {
@@ -303,7 +303,7 @@ namespace I2C_LCD1602_KANA {
     /**
      * shift right
      */
-    //% blockId="I2C_LCD1620_SHR" block="ディスプレイの表示を右にずらす"
+    //% blockId="I2C_LCD1620_SHR" block="右にずらす"
     //% weight=60 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function shr(): void {
