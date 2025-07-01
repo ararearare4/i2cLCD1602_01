@@ -7,8 +7,8 @@
 /**
  * Custom blocks
  */
-//% weight=20 color=#0fbc11 icon="▀"
-namespace I2C_LCD1602 {
+//% weight=20 color=#1E90FF" icon="▀"
+namespace I2C_LCD1602_KANA {
     let i2cAddr: number // 0x3F: PCF8574A, 0x27: PCF8574
     let BK: number      // backlight control
     let RS: number      // command/data
@@ -281,7 +281,7 @@ namespace I2C_LCD1602 {
      * @param x is LCD column position, [0 - 15], eg: 0
      * @param y is LCD row position, [0 - 1], eg: 0
      */
-    //% blockId="I2C_LCD1620_SHOW_STRING" block="文字%sをx %x|y %yに表示"
+    //% blockId="I2C_LCD1620_SHOW_STRING" block="文字%sをx %x|y %yに表示(カタカナOK)"
     //% weight=90 blockGap=8
     //% x.min=0 x.max=15
     //% y.min=0 y.max=1
