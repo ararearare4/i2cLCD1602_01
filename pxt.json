@@ -1,5 +1,5 @@
 {
-    "name": "i2cLCD1602",
+    "name": "i2cLCD1602_01",
     "version": "1.5.0",
     "description": "makecode I2C LCD1602 extension for micro:bit",
     "license": "MIT",
@@ -10,7 +10,8 @@
         "README.md",
         "pxtparts.json",
         "LCD1602_I2C_1.ts",
-        "parts/LCD1602_I2C.svg"
+        "parts/LCD1602_I2C.svg",
+        "namespace": "LCD_Japanese"	
     ],
     "testFiles": [
         "test.ts"
