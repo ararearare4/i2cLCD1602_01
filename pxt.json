@@ -10,11 +10,11 @@
         "README.md",
         "pxtparts.json",
         "LCD1602_I2C_1.ts",
-        "parts/LCD1602_I2C.svg",
-        "namespace": "LCD_Japanese"	
+        "parts/LCD1602_I2C.svg"	
     ],
     "testFiles": [
         "test.ts"
     ],
-    "public": true
+    "public": true,
+    "namespace": "LCD_Japanese"
 }
