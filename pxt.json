@@ -1,6 +1,6 @@
 {
     "name": "i2cLCD1602_Kana_01",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "description": "makecode I2C LCD1602 extension for micro:bit",
     "license": "MIT",
     "color": "#1E90FF",
