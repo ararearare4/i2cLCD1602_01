@@ -75,7 +75,7 @@ namespace I2C_LCD1602_KANA {
      * initial LCD, set I2C address. Address is 39/63 for PCF8574/PCF8574A
      * @param Addr is i2c address for LCD, eg: 0, 39, 63. 0 is auto find address
      */
-    //% blockId="I2C_LCD1620_SET_ADDRESS" block="ディスプレイを%addrで初期化する(39がよい)"
+    //% blockId="I2C_LCD1620_SET_ADDRESS" block="ディスプレイを%addrで初期化する（39がいい）"
     //% weight=100 blockGap=8
     //% parts=LCD1602_I2C trackArgs=0
     export function LcdInit(Addr: number) {
@@ -281,7 +281,7 @@ namespace I2C_LCD1602_KANA {
      * @param x is LCD column position, [0 - 15], eg: 0
      * @param y is LCD row position, [0 - 1], eg: 0
      */
-    //% blockId="I2C_LCD1620_SHOW_STRING" block="文字%sをx %x|y %yに表示(カタカナOK)"
+    //% blockId="I2C_LCD1620_SHOW_STRING" block="文字%sをx %x|y %yに表示（カタカナOK）"
     //% weight=90 blockGap=8
     //% x.min=0 x.max=15
     //% y.min=0 y.max=1
