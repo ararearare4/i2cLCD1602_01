@@ -5,12 +5,13 @@
     "license": "MIT",
     "color": "#1E90FF",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "microbit": "*"
     },
     "files": [
         "README.md",
         "pxtparts.json",
-        "LCD1602_I2C_1.ts",
+        "main.ts",
         "parts/LCD1602_I2C.svg"	
     ],
     "testFiles": [

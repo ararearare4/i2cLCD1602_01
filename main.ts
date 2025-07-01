@@ -7,7 +7,7 @@
 /**
  * Custom blocks
  */
-//% weight=20 color=#1E90FF" icon="▀"
+//% weight=20 color="#1E90FF" icon="▀"
 namespace I2C_LCD1602_KANA {
     let i2cAddr: number // 0x3F: PCF8574A, 0x27: PCF8574
     let BK: number      // backlight control
