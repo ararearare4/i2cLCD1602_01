@@ -217,11 +217,11 @@ namespace I2C_LCD1602_KANA {
 
     /**
      * show a string in LCD at given position
-     * @param s is string will be show, eg: "Hello"
+     * @param s is string will be show, eg: "Hello コンニチハ"
      * @param x is LCD column position, [0 - 15], eg: 0
      * @param y is LCD row position, [0 - 1], eg: 0
      */
-    //% blockId="I2C_LCD1620_SHOW_STRING" block="文字 %s を x %x y %y に表示"
+    //% blockId="I2C_LCD1620_SHOW_STRING" block="%s を x %x y %y に表示"
     //% weight=90 blockGap=8
     //% x.min=0 x.max=15
     //% y.min=0 y.max=1
@@ -366,8 +366,6 @@ namespace I2C_LCD1602_KANA {
     function writeData(data: number): void {
         pins.i2cWriteBuffer(i2cAddr, pins.createBufferFromArray([0x40, data]))
     }
-
-
 
 
 
