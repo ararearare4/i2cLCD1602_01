@@ -191,7 +191,7 @@ namespace I2C_LCD1602_KANA {
             case "レ": return 0xDA
             case "ロ": return 0xDB
             case "ワ": return 0xDC
-            case "ヲ": return 0x6A
+            case "ヲ": return 0xA6
             case "ン": return 0xDD
             case "゛": return 0xDE
             case "゜": return 0xDF
@@ -318,13 +318,13 @@ namespace I2C_LCD1602_KANA {
     }
 
     /**
-     * 外字（カスタム文字）を登録します。5×8ドットをImage形式で指定
-     * @param slot 外字番号（0～7）
-     * @param charImage 外字パターン（5×8 Image）
+     * 外字（カスタム文字）をImage形式で登録します
      */
-    //% block="外字 %slot に登録 %charImage"
+    //% block="外字 %slot に 登録 %char"
     //% slot.min=0 slot.max=7
-    export function registerCustomChar(slot: number, charImage: Image): void {
+    //% char.shadow=screen_image_picker
+    //% weight=80
+    export function registerCustomChar(slot: number, char: Image): void {
         if (slot < 0 || slot > 7) return;
 
         let bytes: number[] = []
@@ -332,8 +332,8 @@ namespace I2C_LCD1602_KANA {
         for (let y = 0; y < 8; y++) {
             let row = 0
             for (let x = 0; x < 5; x++) {
-                if (charImage.pixel(x, y)) {
-                    row |= (1 << (4 - x)) // ビット位置を逆順にする
+                if (char.pixel(x, y)) {
+                    row |= (1 << (4 - x))  // LCD1602は左がMSB
                 }
             }
             bytes.push(row)
@@ -341,8 +341,8 @@ namespace I2C_LCD1602_KANA {
 
         let addr = 0x40 | (slot << 3)
         writeCommand(addr)
-        for (let i = 0; i < 8; i++) {
-            writeData(bytes[i])
+        for (let b of bytes) {
+            writeData(b)
         }
     }
 
