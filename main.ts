@@ -316,32 +316,41 @@ namespace I2C_LCD1602_KANA {
     export function shr(): void {
         cmd(0x1C)
     }
-
     /**
-     * 外字スロット0に、棒人間（立ちポーズ）を登録
+     * 外字スロット0に、棒人間（立ち）を登録
      */
     //% block="外字0に棒人間（立ち）を登録"
     export function initStandingStickman(): void {
         const data = [0x0E, 0x0A, 0x0E, 0x04, 0x1F, 0x04, 0x0A, 0x11]
-        let addr = 0x40 | (0 << 3)
+        let addr = 0x40 | (0 << 3) // CGRAMスロット0
+    
         writeCommand(addr)
         for (let b of data) {
             writeData(b)
         }
+    
+        // 書き込み後に通常表示領域に戻す
+        writeCommand(0x80)
     }
 
     /**
-     * 外字（カスタム文字）を現在のカーソル位置に表示します
-     * @param slot 外字番号（0～7）
+     * カーソル位置 x %x, y %y に外字 %slot を表示
      */
-    //% block="外字 %slot を表示"
+    //% block="x %x y %y に外字 %slot を表示"
+    //% x.min=0 x.max=15
+    //% y.min=0 y.max=1
     //% slot.min=0 slot.max=7
-    export function printCustomChar(slot: number): void {
-        if (slot >= 0 && slot <= 7) {
-            writeData(slot)
-        }
+    //% weight=80
+    export function printCustomCharAt(x: number, y: number, slot: number): void {
+        if (slot < 0 || slot > 7) return;
+        setCursor(x, y)
+        writeData(slot)
     }
 
+    function setCursor(col: number, row: number): void {
+        const rowOffsets = [0x00, 0x40]
+        writeCommand(0x80 | (col + rowOffsets[row]))
+    }
 
     function writeCommand(cmd: number): void {
         pins.i2cWriteBuffer(i2cAddr, pins.createBufferFromArray([0x80, cmd]))
