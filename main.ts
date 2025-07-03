@@ -322,7 +322,7 @@ namespace I2C_LCD1602_KANA {
      */
     //% block="外字 %slot に 登録 %char"
     //% slot.min=0 slot.max=7
-    //% char.shadow=screen_image_picker
+    //%  char.shadow=images.createImage
     //% weight=80
     export function registerCustomChar(slot: number, char: Image): void {
         if (slot < 0 || slot > 7) return;
