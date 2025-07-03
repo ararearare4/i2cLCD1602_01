@@ -321,16 +321,17 @@ namespace I2C_LCD1602_KANA {
      */
     //% block="外字0に棒人間（立ち）を登録"
     export function initStandingStickman(): void {
+        // ← これが大事！LcdInit()後は0x39（拡張モード）になっているので戻す
+        writeCommand(0x38) // 通常命令モードに戻す
+    
         const data = [0x0E, 0x0A, 0x0E, 0x04, 0x1F, 0x04, 0x0A, 0x11]
-        let addr = 0x40 | (0 << 3) // CGRAMスロット0
+        let addr = 0x40 | (0 << 3) // CGRAM アドレス
     
         writeCommand(addr)
         for (let b of data) {
             writeData(b)
         }
-    
-        // 書き込み後に通常表示領域に戻す
-        writeCommand(0x80)
+        writeCommand(0x80) // DDRAM（表示モード）に戻す
     }
 
     /**
