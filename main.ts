@@ -320,12 +320,13 @@ namespace I2C_LCD1602_KANA {
     /**
      * 外字スロット0に、棒人間（立ちポーズ）を登録
      */
+    //% block="外字0に棒人間（立ち）を登録"
     export function initStandingStickman(): void {
         const data = [0x0E, 0x0A, 0x0E, 0x04, 0x1F, 0x04, 0x0A, 0x11]
-        const addr = 0x40 | (0 << 3) // 外字0番のCGRAMアドレス
-            writeCommand(addr)
-            for (let b of data) {
-                writeData(b)
+        let addr = 0x40 | (0 << 3)
+        writeCommand(addr)
+        for (let b of data) {
+            writeData(b)
         }
     }
 
