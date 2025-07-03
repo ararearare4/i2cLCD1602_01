@@ -101,7 +101,7 @@ namespace I2C_LCD1602_KANA {
      * @param x is LCD column position, eg: 0
      * @param y is LCD row position, eg: 0
      */
-    //% blockId="I2C_LCD1620_SHOW_NUMBER" block="x %x y %y に数字 %n を表示"
+    //% blockId="I2C_LCD1620_SHOW_NUMBER" block="数字 %n をx %x y %y に表示"
     //% weight=91 blockGap=8
     //% x.min=0 x.max=15
     //% y.min=0 y.max=1
@@ -221,7 +221,7 @@ namespace I2C_LCD1602_KANA {
      * @param x is LCD column position, [0 - 15], eg: 0
      * @param y is LCD row position, [0 - 1], eg: 0
      */
-    //% blockId="I2C_LCD1620_SHOW_STRING" block="x %x y %y に文字 %s を表示"
+    //% blockId="I2C_LCD1620_SHOW_STRING" block="文字 %s を x %x y %y に表示"
     //% weight=90 blockGap=8
     //% x.min=0 x.max=15
     //% y.min=0 y.max=1
@@ -316,4 +316,59 @@ namespace I2C_LCD1602_KANA {
     export function shr(): void {
         cmd(0x1C)
     }
+
+    /**
+     * 外字（カスタム文字）を登録します。5×8ドットをImage形式で指定
+     * @param slot 外字番号（0～7）
+     * @param charImage 外字パターン（5×8 Image）
+     */
+    //% block="外字 %slot に登録 %charImage"
+    //% slot.min=0 slot.max=7
+    export function registerCustomChar(slot: number, charImage: Image): void {
+        if (slot < 0 || slot > 7) return;
+
+        let bytes: number[] = []
+
+        for (let y = 0; y < 8; y++) {
+            let row = 0
+            for (let x = 0; x < 5; x++) {
+                if (charImage.pixel(x, y)) {
+                    row |= (1 << (4 - x)) // ビット位置を逆順にする
+                }
+            }
+            bytes.push(row)
+        }
+
+        let addr = 0x40 | (slot << 3)
+        writeCommand(addr)
+        for (let i = 0; i < 8; i++) {
+            writeData(bytes[i])
+        }
+    }
+
+    /**
+     * 外字（カスタム文字）を現在のカーソル位置に表示します
+     * @param slot 外字番号（0～7）
+     */
+    //% block="外字 %slot を表示"
+    //% slot.min=0 slot.max=7
+    export function printCustomChar(slot: number): void {
+        if (slot >= 0 && slot <= 7) {
+            writeData(slot)
+        }
+    }
+
+
+    function writeCommand(cmd: number): void {
+        pins.i2cWriteBuffer(i2cAddr, pins.createBufferFromArray([0x80, cmd]))
+    }
+
+    function writeData(data: number): void {
+        pins.i2cWriteBuffer(i2cAddr, pins.createBufferFromArray([0x40, data]))
+    }
+
+
+
+
+
 }
