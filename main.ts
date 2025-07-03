@@ -318,31 +318,14 @@ namespace I2C_LCD1602_KANA {
     }
 
     /**
-     * 外字（カスタム文字）をImage形式で登録します
+     * 外字スロット0に、棒人間（立ちポーズ）を登録
      */
-    //% block="外字 %slot に 登録 %char"
-    //% slot.min=0 slot.max=7
-    //%  char.shadow=images.createImage
-    //% weight=80
-    export function registerCustomChar(slot: number, char: Image): void {
-        if (slot < 0 || slot > 7) return;
-
-        let bytes: number[] = []
-
-        for (let y = 0; y < 8; y++) {
-            let row = 0
-            for (let x = 0; x < 5; x++) {
-                if (char.pixel(x, y)) {
-                    row |= (1 << (4 - x))  // LCD1602は左がMSB
-                }
-            }
-            bytes.push(row)
-        }
-
-        let addr = 0x40 | (slot << 3)
-        writeCommand(addr)
-        for (let b of bytes) {
-            writeData(b)
+    export function initStandingStickman(): void {
+        const data = [0x0E, 0x0A, 0x0E, 0x04, 0x1F, 0x04, 0x0A, 0x11]
+        const addr = 0x40 | (0 << 3) // 外字0番のCGRAMアドレス
+            writeCommand(addr)
+            for (let b of data) {
+                writeData(b)
         }
     }
 
