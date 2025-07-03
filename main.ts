@@ -139,6 +139,7 @@ namespace I2C_LCD1602_KANA {
             case "プ": return ["フ", "゜"]
             case "ペ": return ["ヘ", "゜"]
             case "ポ": return ["ホ", "゜"]
+            case "ヴ": return ["ウ", "゛"]
             default: return [c]
         }
     }
@@ -190,6 +191,7 @@ namespace I2C_LCD1602_KANA {
             case "レ": return 0xDA
             case "ロ": return 0xDB
             case "ワ": return 0xDC
+            case "ヲ": return 0x6A
             case "ン": return 0xDD
             case "゛": return 0xDE
             case "゜": return 0xDF
@@ -203,6 +205,11 @@ namespace I2C_LCD1602_KANA {
             case "ャ": return 0xAC
             case "ュ": return 0xAD
             case "ョ": return 0xAE
+            case "ァ": return 0xA7
+            case "ィ": return 0xA8
+            case "ゥ": return 0xA9
+            case "ェ": return 0xAA
+            case "ォ": return 0xAB
             default: return c.charCodeAt(0)
         }
     }
