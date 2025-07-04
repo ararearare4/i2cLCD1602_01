@@ -365,11 +365,11 @@ namespace I2C_LCD1602_KANA {
     
         // 念のため表示ONを再送信（LCDの一部で必要）
         writeCommand(0x0C)
-        basic.pause(1)
+        basic.pause(2)
     
         // カーソル移動
         setCursor(x, y)
-        basic.pause(1)
+        basic.pause(2)
     
         // 外字スロットをデータとして送信
         writeData(slot)
@@ -385,7 +385,7 @@ namespace I2C_LCD1602_KANA {
         buf[0] = 0x80
         buf[1] = cmd
         pins.i2cWriteBuffer(i2cAddr, buf)
-        basic.pause(1) // ← 小さなdelayを追加
+        basic.pause(2) // ← 小さなdelayを追加
     }
     
     function writeData(data: number): void {
@@ -393,7 +393,7 @@ namespace I2C_LCD1602_KANA {
         buf[0] = 0x40
         buf[1] = data
         pins.i2cWriteBuffer(i2cAddr, buf)
-        basic.pause(1) // ← ここにも追加
+        basic.pause(2) // ← ここにも追加
     }
     
 
