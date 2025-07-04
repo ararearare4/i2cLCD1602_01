@@ -375,21 +375,27 @@ namespace I2C_LCD1602_KANA {
         writeData(slot)
     }
 
-
-
     function setCursor(col: number, row: number): void {
         const rowOffsets = [0x00, 0x40]
         writeCommand(0x80 | (col + rowOffsets[row]))
     }
 
     function writeCommand(cmd: number): void {
-        pins.i2cWriteBuffer(i2cAddr, pins.createBufferFromArray([0x80, cmd]))
+        let buf = pins.createBuffer(2)
+        buf[0] = 0x80
+        buf[1] = cmd
+        pins.i2cWriteBuffer(i2cAddr, buf)
+        basic.pause(1) // ← 小さなdelayを追加
     }
-
+    
     function writeData(data: number): void {
-        pins.i2cWriteBuffer(i2cAddr, pins.createBufferFromArray([0x40, data]))
+        let buf = pins.createBuffer(2)
+        buf[0] = 0x40
+        buf[1] = data
+        pins.i2cWriteBuffer(i2cAddr, buf)
+        basic.pause(1) // ← ここにも追加
     }
-
+    
 
 
 }
