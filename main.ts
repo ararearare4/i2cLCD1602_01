@@ -362,9 +362,20 @@ namespace I2C_LCD1602_KANA {
     //% weight=80
     export function printCustomCharAt(x: number, y: number, slot: number): void {
         if (slot < 0 || slot > 7) return;
+    
+        // 念のため表示ONを再送信（LCDの一部で必要）
+        writeCommand(0x0C)
+        basic.pause(1)
+    
+        // カーソル移動
         setCursor(x, y)
+        basic.pause(1)
+    
+        // 外字スロットをデータとして送信
         writeData(slot)
     }
+
+
 
     function setCursor(col: number, row: number): void {
         const rowOffsets = [0x00, 0x40]
