@@ -214,6 +214,10 @@ namespace I2C_LCD1602_KANA {
             case "ゥ": return 0xA9
             case "ェ": return 0xAA
             case "ォ": return 0xAB
+            case "→": return 0x7E
+            case "←": return 0x7F
+            case "■": return 0xFF
+            case "□": return 0xB1
             default: return c.charCodeAt(0)
         }
     }
@@ -326,7 +330,7 @@ namespace I2C_LCD1602_KANA {
      * 外字スロット0に、棒人間（立ち）を登録
      */
     //% block="外字0に棒人間（立ち）を登録"
-    export function initStandingStickman(): void {
+    function initStandingStickman(): void {
         // 1. 通常命令モードに戻す
         writeCommand(0x38)
         basic.pause(2)
@@ -360,7 +364,7 @@ namespace I2C_LCD1602_KANA {
     //% y.min=0 y.max=1
     //% slot.min=0 slot.max=7
     //% weight=80
-    export function printCustomCharAt(x: number, y: number, slot: number): void {
+    function printCustomCharAt(x: number, y: number, slot: number): void {
         if (slot < 0 || slot > 7) return;
     
         // 念のため表示ONを再送信（LCDの一部で必要）
